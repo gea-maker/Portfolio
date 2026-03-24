@@ -3,33 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Revis Portfolio</title>
+<title>Irfan Portfolio</title>
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
+<!-- ICON -->
+<script src="https://fontawesome.com" crossorigin="anonymous"></script>
+<script src="https://smartclass.ours.web.id/" crossorigin="web_belajar"></script>
+
+<style>
 body {
+  margin: 0;
   background: #020617;
   color: white;
   font-family: 'Orbitron', sans-serif;
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   position: fixed;
   width: 100%;
-  top: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
   padding: 15px;
   text-align: center;
+  backdrop-filter: blur(10px);
   z-index: 1000;
 }
 
@@ -37,7 +37,6 @@ nav a {
   color: #38bdf8;
   margin: 0 15px;
   text-decoration: none;
-  transition: 0.3s;
 }
 
 nav a:hover {
@@ -51,17 +50,21 @@ nav a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  text-align: center;
+}
+
+.hero img {
+  width: 120px;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  margin-bottom: 15px;
 }
 
 .hero h1 {
-  font-size: 50px;
   color: #38bdf8;
 }
 
-.hero p {
-  margin-top: 10px;
-  color: #94a3b8;
+#typing {
+  color: #22c55e;
 }
 
 /* SECTION */
@@ -71,7 +74,6 @@ section {
 
 h2 {
   text-align: center;
-  margin-bottom: 40px;
   color: #22c55e;
 }
 
@@ -88,26 +90,42 @@ h2 {
   padding: 20px;
   border-radius: 15px;
   width: 250px;
+  text-align: center;
   transition: 0.3s;
   border: 1px solid #1e293b;
+  cursor: pointer;
 }
 
 .card:hover {
   transform: scale(1.05);
-  border: 1px solid #38bdf8;
+  box-shadow: 0 0 15px #38bdf8;
 }
 
-/* PROJECT */
-.project {
-  width: 300px;
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
+.modal-content {
   background: #020617;
-  color: #64748b;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* MATRIX */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 </style>
 
@@ -115,74 +133,116 @@ footer {
 
 <body>
 
-<!-- NAVBAR -->
+<canvas id="matrix"></canvas>
+
 <nav>
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero" id="home">
-  <h1>Revis Irwan Gea</h1>
-  <p>Network Engineer | Cybersecurity | Developer</p>
+  <img src="https://i.pravatar.cc/150" alt="profile">
+  <h1>Irfan Iswandi</h1>
+  <p id="typing"></p>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
+<section id="about" data-aos="fade-up">
   <h2>About Me</h2>
   <p style="text-align:center; max-width:600px; margin:auto;">
-    Saya memiliki minat di bidang jaringan komputer (TKJ), cybersecurity, dan pengembangan tools berbasis Linux serta web development.
+    Saya fokus pada networking, cybersecurity, dan pengembangan tools berbasis Linux.
   </p>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
+<section id="skills" data-aos="fade-up">
   <h2>Skills</h2>
   <div class="container">
-    <div class="card">Networking (Mikrotik, Linux)</div>
-    <div class="card">Cybersecurity</div>
-    <div class="card">Bash Scripting</div>
-    <div class="card">HTML, CSS, JS</div>
+    <div class="card">🌐 Networking</div>
+    <div class="card">🛡️ Cybersecurity</div>
+    <div class="card">💻 Programming</div>
+    <div class="card">🐧 Linux</div>
   </div>
 </section>
 
-<!-- PROJECT -->
-<section id="projects">
+<section id="projects" data-aos="fade-up">
   <h2>Projects</h2>
   <div class="container">
 
-    <div class="card project">
-      <h3>EvilPunk Tool</h3>
-      <p>Simulasi keamanan jaringan WiFi (scan, fake AP, login page).</p>
+    <div class="card" onclick="openModal('EvilPunk Tool - Simulasi keamanan WiFi')">
+      EvilPunk Tool
     </div>
 
-    <div class="card project">
-      <h3>WiPrank</h3>
-      <p>Simulasi prank jaringan dengan popup dan efek gangguan.</p>
-    </div>
-
-    <div class="card project">
-      <h3>Portfolio Website</h3>
-      <p>Website portofolio pribadi berbasis HTML, CSS, JS.</p>
+    <div class="card" onclick="openModal('WiPrank - Simulasi prank jaringan')">
+      WiPrank
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
-  <p style="text-align:center;">
-    Email: refisgea@gmail.com
-  </p>
-</section>
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeModal()">
+  <div class="modal-content" id="modalContent"></div>
+</div>
 
-<footer>
-  <p>© 2026 Revis Irwan Gea</p>
-</footer>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init();
+
+// typing
+const text = "Network Engineer | Cybersecurity | Developer";
+let i = 0;
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 50);
+  }
+}
+typing();
+
+// modal
+function openModal(text) {
+  document.getElementById("modal").style.display = "flex";
+  document.getElementById("modalContent").innerText = text;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// matrix
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for (let x = 0; x < columns; x++) drops[x] = 1;
+
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#0f0";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters.charAt(Math.floor(Math.random()*letters.length));
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+    if (drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
+}
+setInterval(draw, 33);
+</script>
 
 </body>
 </html>
