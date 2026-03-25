@@ -9,11 +9,25 @@ body {
   background: black;
   color: #0f0;
   font-family: monospace;
+  margin: 0;
   padding: 20px;
 }
 
 #terminal {
-  white-space: pre-line;
+  white-space: pre-wrap;
+}
+
+.input-line {
+  display: flex;
+}
+
+input {
+  background: black;
+  border: none;
+  color: #0f0;
+  outline: none;
+  font-family: monospace;
+  width: 100%;
 }
 
 .btn {
@@ -25,22 +39,23 @@ body {
   text-decoration: none;
   border-radius: 5px;
 }
-
-.btn:hover {
-  background: #38bdf8;
-}
 </style>
 </head>
 
 <body>
 
-<h2>🖥️ WiPrank OS Simulation</h2>
+<h3>🖥️ WiPrank OS v1.0</h3>
 
 <div id="terminal"></div>
 
-<!-- BUTTON DOWNLOAD -->
+<div class="input-line">
+  <span>root@wiprank:~# </span>
+  <input id="command" autofocus>
+</div>
+
 <br>
-<a href="https://drive.google.com/uc?export=download&id=1BPtVf-H6tRFWiSFot3_s_FQqUlEFvuin" target="_blank" class="btn">
+
+<a href="https://drive.google.com/drive/folders/1sl4mLTFYMV8RFpTGDr6UoGPiUX7fh2Rs" target="_blank" class="btn">
   ⬇ Download Tool
 </a>
 
@@ -48,54 +63,65 @@ body {
 <a href="index.html" class="btn">⬅ Kembali</a>
 
 <script>
-const lines = [
+const terminal = document.getElementById("terminal");
+const input = document.getElementById("command");
+
+const responses = {
+  help: "Available commands:\nhelp\nrun\nclear\nabout\ndownload",
+  run: "Launching prank...\nSending popup...\nTarget lagging...\nSuccess ✔",
+  about: "WiPrank Tool - Network prank simulation",
+  download: "Opening download link..."
+};
+
+function print(text) {
+  terminal.innerHTML += text + "\n";
+}
+
+input.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    const cmd = input.value.trim();
+
+    print("root@wiprank:~# " + cmd);
+
+    if (responses[cmd]) {
+      print(responses[cmd]);
+
+      if (cmd === "download") {
+        window.open("https://drive.google.com/uc?export=download&id=1BPtVf-H6tRFWiSFot3_s_FQqUlEFvuin");
+      }
+      preview: "Opening preview..."
+      if (cmd === "preview") {
+        window.open("https://drive.google.com/file/d/1BPtVf-H6tRFWiSFot3_s_FQqUlEFvuin/view");
+      }
+    } else if (cmd === "clear") {
+      terminal.innerHTML = "";
+    } else {
+      print("Command not found");
+    }
+
+    input.value = "";
+  }
+});
+
+// booting effect
+const boot = [
   "Booting WiPrank OS...",
-  "Loading kernel modules...",
-  "Initializing network interface...",
-  "Injecting prank payload...",
+  "Loading modules...",
+  "Initializing system...",
   "System ready ✔",
-  "",
-  "root@wiprank:~# type 'help' to begin"
+  ""
 ];
 
 let i = 0;
-
-function typeLine() {
-  if (i < lines.length) {
-    document.getElementById("terminal").innerHTML += lines[i] + "\n";
+function booting() {
+  if (i < boot.length) {
+    print(boot[i]);
     i++;
-    setTimeout(typeLine, 400);
+    setTimeout(booting, 400);
   }
 }
 
-typeLine();
-
-// INTERACTIVE COMMAND
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Enter") {
-    const cmd = prompt("root@wiprank:~#");
-
-    if (cmd === "help") {
-      alert("Commands:\nrun\ndownload\nabout");
-    }
-
-    else if (cmd === "run") {
-      alert("Launching prank...\nTarget lagging...\nSuccess ✔");
-    }
-
-    else if (cmd === "download") {
-      window.open("https://drive.google.com/uc?export=download&id=1BPtVf-H6tRFWiSFot3_s_FQqUlEFvuin");
-    }
-
-    else if (cmd === "about") {
-      alert("WiPrank Tool - Network prank simulation");
-    }
-
-    else {
-      alert("Command not found");
-    }
-  }
-});
+booting();
 </script>
 
 </body>
