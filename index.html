@@ -6,13 +6,7 @@
 <title>Revis Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- AOS -->
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-<!-- ICON -->
-<script src="https://fontawesome.com" crossorigin="anonymous"></script>
-<script src="https://smartclass.ours.web.id/" crossorigin="web_belajar"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body {
@@ -39,10 +33,6 @@ nav a {
   text-decoration: none;
 }
 
-nav a:hover {
-  color: #22c55e;
-}
-
 /* HERO */
 .hero {
   height: 100vh;
@@ -50,34 +40,34 @@ nav a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .hero img {
   width: 120px;
   border-radius: 50%;
   border: 2px solid #38bdf8;
-  margin-bottom: 15px;
 }
 
-.hero h1 {
-  color: #38bdf8;
+.hero h1 { color: #38bdf8; }
+
+.btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #22c55e;
+  color: black;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
 }
 
-#typing {
-  color: #22c55e;
-}
+.btn:hover { background: #38bdf8; }
 
 /* SECTION */
-section {
-  padding: 80px 20px;
-}
+section { padding: 80px 20px; }
 
-h2 {
-  text-align: center;
-  color: #22c55e;
-}
+h2 { text-align: center; color: #22c55e; }
 
-/* CARD */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -93,7 +83,6 @@ h2 {
   text-align: center;
   transition: 0.3s;
   border: 1px solid #1e293b;
-  cursor: pointer;
 }
 
 .card:hover {
@@ -101,23 +90,11 @@ h2 {
   box-shadow: 0 0 15px #38bdf8;
 }
 
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: #020617;
-  padding: 20px;
-  border-radius: 10px;
+/* TERMINAL */
+#terminal {
+  margin-top: 20px;
+  color: #0f0;
+  font-family: monospace;
 }
 
 /* MATRIX */
@@ -128,7 +105,6 @@ canvas {
   z-index: -1;
 }
 </style>
-
 </head>
 
 <body>
@@ -138,58 +114,82 @@ canvas {
 <nav>
   <a href="#home">Home</a>
   <a href="#about">About</a>
-  <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <div class="hero" id="home">
-  <img src="https://i.pravatar.cc/150" alt="profile">
+  <img src="https://i.pravatar.cc/150">
   <h1>Revis Irwan Gea</h1>
   <p id="typing"></p>
+
+  <a href="cv.pdf" download class="btn">⬇ Download CV</a>
+  <a href="https://smartclass.ours.web.id/" target="_blank" class="btn">🌐 SmartClass</a>
+
+  <div id="terminal"></div>
 </div>
 
-<section id="about" data-aos="fade-up">
+<section id="about">
   <h2>About Me</h2>
   <p style="text-align:center; max-width:600px; margin:auto;">
     Saya fokus pada networking, cybersecurity, dan pengembangan tools berbasis Linux.
   </p>
-</section>
 
-<section id="skills" data-aos="fade-up">
-  <h2>Skills</h2>
-  <div class="container">
-    <div class="card">🌐 Networking</div>
-    <div class="card">🛡️ Cybersecurity</div>
-    <div class="card">💻 Programming</div>
-    <div class="card">🐧 Linux</div>
-  </div>
 </section>
-
-<section id="projects" data-aos="fade-up">
+<section id="projects">
   <h2>Projects</h2>
   <div class="container">
 
-    <div class="card" onclick="openModal('EvilPunk Tool - Simulasi keamanan WiFi')">
-      EvilPunk Tool
+    <a href="project-evilpunk.html" class="card">
+      🔥 EvilPunk Tool
+      <p>Simulasi keamanan jaringan WiFi</p>
+    </a>
+
+    <a href="project-wiprank.html" class="card">
+      ⚡ WiPrank
+      <p>Simulasi prank jaringan</p>
+    </a>
+
+    <!-- SMARTCLASS FIX -->
+    <a href="https://smartclass.ours.web.id/" target="_blank" class="card">
+      🌐 SmartClass Website
+      <p>Platform pembelajaran online</p>
+    </a>
+
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="container">
+
+    <div class="card">
+      📧 Email
+      <p>refisgea@gmail.com</p>
     </div>
 
-    <div class="card" onclick="openModal('WiPrank - Simulasi prank jaringan')">
-      WiPrank
+    <div class="card">
+      💻 GitHub
+      <p>
+        <a href="https://github.com/gea-maker" target="_blank" style="color:#38bdf8;">
+          github.com/gea-maker
+        </a>
+      </p>
+    </div>
+
+    <div class="card">
+      📱 WhatsApp
+      <p>
+        <a href="https://wa.me/6281265342848" target="_blank" style="color:#38bdf8;">
+          Chat Saya
+        </a>
+      </p>
     </div>
 
   </div>
 </section>
 
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeModal()">
-  <div class="modal-content" id="modalContent"></div>
-</div>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
 <script>
-AOS.init();
-
 // typing
 const text = "Network Engineer | Cybersecurity | Developer";
 let i = 0;
@@ -202,15 +202,32 @@ function typing() {
 }
 typing();
 
-// modal
-function openModal(text) {
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("modalContent").innerText = text;
-}
+// terminal
+const terminalText = [
+  "Initializing system...",
+  "Accessing network...",
+  "Bypassing security...",
+  "Access Granted ✔"
+];
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
+let line = 0;
+let char = 0;
+
+function terminal() {
+  if (line < terminalText.length) {
+    if (char < terminalText[line].length) {
+      document.getElementById("terminal").innerHTML += terminalText[line].charAt(char);
+      char++;
+      setTimeout(terminal, 30);
+    } else {
+      document.getElementById("terminal").innerHTML += "<br>";
+      line++;
+      char = 0;
+      setTimeout(terminal, 500);
+    }
+  }
 }
+terminal();
 
 // matrix
 const canvas = document.getElementById('matrix');
@@ -243,6 +260,10 @@ function draw() {
 }
 setInterval(draw, 33);
 </script>
+
+<footer style="text-align:center; padding:20px; color:#64748b;">
+  © 2026 Revis Irwan Gea | Cyber Portfolio
+</footer>
 
 </body>
 </html>
